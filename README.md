@@ -20,4 +20,46 @@ Help you to buffer your tasks
 
 ## Quick Start
 
+Using class `BufferedQueue`.
+
+```javascript
+const BufferedQueue = require('buffered-kueue')
+let result = null
+const queue = new BufferedQueue({onFlush: (items) => { result = items }, flushInterval: 1000, flushSize: 1})
+
+queue.add(1) // after 1000ms result -> [1]
+queue.add(2) // after 2000ms result -> [2]
+```
+
 ## API
+
+### class `BufferedQueue`
+
+#### constructor(options) => bufferedQueue: BufferedQueue
+
+The options beginning with the symbol `*` are required.
+
+- *`options.maxSize`: Max size of queue. *Default: Infinity*
+  - number
+- *`options.flushSize`: Flush size of queue. *Default: Infinity*
+  - number
+- *`options.flushInterval`: Flush interval(ms) of queue. *Default: 1000*
+  - number
+- *`options.onFlush`: Flush handler. *Default: noop*
+  - function: (flushItems, allItems) => any
+- `options.willAdd`: Lifecycle events, called before adding new item. *Default: noop*
+  - function: (item, allItems) => any
+- `options.didAdd`: Lifecycle events, called after adding new item. *Default: noop*
+  - function: (item, allItems) => any
+- `options.willFlush`: Lifecycle events, called before flushing. *Default: noop*
+  - function: (flushItems, allItems) => any
+- `options.didFlush`: Lifecycle events, called after flushing. *Default: noop*
+  - function: (flushItems, allItems) => any
+- `options.willStart`: Lifecycle events, called before start. *Default: noop*
+  - function: () => any
+- `options.didStart`: Lifecycle events, called after start. *Default: noop*
+  - function: () => any
+- `options.willStop`: Lifecycle events, called before stop. *Default: noop*
+  - function: () => any
+- `options.didStop`: Lifecycle events, called after stop. *Default: noop*
+  - function: () => any

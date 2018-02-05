@@ -46,7 +46,7 @@ describe('BufferedQueue', () => {
         queue.add(3)
         return sleep(1000)
       })
-      .catch(e => expect(e.message).toMatch(/Queue length exceeds limit/))
+      .catch(e => expect(e.message).toMatch(/BufferedQueue length exceeds limit/))
     })
   })
 })
