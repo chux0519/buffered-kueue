@@ -27,8 +27,8 @@ const BufferedQueue = require('buffered-kueue')
 let result = null
 const queue = new BufferedQueue({onFlush: (items) => { result = items }, flushInterval: 1000, flushSize: 1})
 
-queue.add(1) // after 1000ms result -> [1]
-queue.add(2) // after 2000ms result -> [2]
+queue.push(1) // after 1000ms result -> [1]
+queue.push(2) // after 2000ms result -> [2]
 ```
 
 ## API
@@ -47,9 +47,9 @@ The options beginning with the symbol `*` are required.
   - number
 - *`options.onFlush`: Flush handler. *Default: noop*
   - function: (flushItems, allItems) => any
-- `options.willAdd`: Lifecycle events, called before adding new item. *Default: noop*
+- `options.willPush`: Lifecycle events, called before pushing new item. *Default: noop*
   - function: (item, allItems) => any
-- `options.didAdd`: Lifecycle events, called after adding new item. *Default: noop*
+- `options.didPush`: Lifecycle events, called after pushing new item. *Default: noop*
   - function: (item, allItems) => any
 - `options.willFlush`: Lifecycle events, called before flushing. *Default: noop*
   - function: (flushItems, allItems) => any
@@ -63,3 +63,7 @@ The options beginning with the symbol `*` are required.
   - function: () => any
 - `options.didStop`: Lifecycle events, called after stop. *Default: noop*
   - function: () => any
+
+#### push(item)
+
+- `item`: Item which would be pushed into the queue.
