@@ -63,6 +63,8 @@ The options beginning with the symbol `*` are required.
   - function: () => any
 - `options.didStop`: Lifecycle events, called after stop. *Default: noop*
   - function: () => any
+- `options.autoStart`: Should auto start when pushing item. You have to manage start manualy when setting this to false. *Default: true*
+  - boolean
 
 #### push(item)
 
